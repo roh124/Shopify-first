@@ -1,0 +1,65 @@
+
+
+
+
+
+
+{% form 'customer' %}
+      {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}
+        <p class="note form-success">Thnaks for coming</p>
+      {% else %}
+         <div class="Form__Group custom-main-forms">
+           <div class="Form__Item under-main-forms">
+          
+    <input
+      type="text"
+      name="contact[first_name]"
+      id="{{ formId }}-first_name"
+      class="input-group__field {% if form.errors contains 'first_name' %} input--error{% endif %}"
+      placeholder="Please enter your first name..."
+      {%- if form.errors contains 'first_name' -%}
+        aria-invalid="true"
+        aria-describedby="{{ formId }}-first_name-error"
+        data-form-status
+      {%- endif -%}
+    >
+           </div>
+	<div class="Form__Item under-main-forms">
+    <input
+      type="text"
+      name="contact[last_name]"
+      id="{{ formId }}-last_name"
+      class="input-group__field {% if form.errors contains 'last_name' %} input--error{% endif %}"
+      placeholder="Please enter your surname..."
+      {%- if form.errors contains 'last_name' -%}
+        aria-invalid="true"
+        aria-describedby="{{ formId }}-last_name-error"
+        data-form-status
+      {%- endif -%}
+    > 
+           </div>
+</div>
+<div class="Form__Item under-main-forms3">
+        <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" id="Email" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+</div>
+        <input type="submit" class="btn Form__Submit Button Button--primary Button--full" name="subscribe" id="subscribe" value="GET CODE">
+      {% endif %}
+<input type="hidden" id="customer_tags" name="contact[tags]" value="prelaunch_signup"/>
+    {% endform %}
+
+
+
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

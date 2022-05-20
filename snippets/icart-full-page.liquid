@@ -1,0 +1,36 @@
+{% if content_for_header contains 'front-icart.js' %}
+{% assign icart_placeholder_png = "https://icart.identixweb.com/icart/assets/img/placeholder.png" %}
+{% unless content_for_layout contains 'icartCommonScriptJs' %}
+<script type="text/javascript" id="icartCommonScriptJs">
+  var icartProductObj = {};
+  var icart_cart_arr = {{ cart | json }};
+  var icartScid = 'SUZ2MXpsS0dObzBTdkUrRnhyd3ZLQT09';
+  var [cart_prod_coll_id_arr, cart_prod_id_arr, cart_prod_wise_coll_id_arr, cart_prod_wise_tag_arr, icartLineItemData] = [[], [], [], [], {}];
+  {%- for item in cart.items -%}
+    icartLineItemData[{{item.id}}] = {{item.product | json}} {% if forloop.index != forloop.length %} , {% endif %}
+    cart_prod_id_arr.push('{{ item.product.id }}');
+  	cart_prod_wise_tag_arr[{{ forloop.index | minus: 1 }}] = {{ item.product.tags | json }};
+  	var icartCollectionIds = [];
+  	{% for collection in item.product.collections %}
+  	  icartCollectionIds.push('{{ collection.id }}');
+      cart_prod_coll_id_arr.push('{{ collection.id }}');
+  	{% endfor %}
+  	icartCollectionIds.length && cart_prod_wise_coll_id_arr.push(icartCollectionIds);
+  {%- endfor -%}
+</script>
+{% endunless  %}
+{% unless content_for_layout contains 'icartCommonMinJs' %}
+<script type="text/javascript" async="false" id="icartCommonMinJs" src="https://icart.identixweb.com/icart/assets/external/js/common-icart.min.js"></script>
+{% endunless  %}
+<div class="icartFullcartContain" style="display:none">
+<style>.icart-pg .icart-pg-container .icart-pg-skelton-hide {display: none;} .icart-pg .icart-pg-cart-items-widget .icart-pg-cart-item.icart-pg-skelton-hide {display: none;}icart-div{display: none;}</style>
+<div class="icart-pg icart-datepicker icart-slipper" data-key="full_cart_background_color"><form action="/cart" method="post"> <input type="hidden" id="icartMainPageId" value=""> <div id="icartshopifyUserMoneyFormate" style="display:none;">{{ shop.money_with_currency_format }}</div> <div class="icart-pg-checkout-fixed-top icartFullCartCheckoutStickyTop"></div> <div class="icart-pg-container icartPageContain" data-top="" id="icartFullPage-"> <!--Progress bar html start--> <div id="icart-widget-settings-23506" class="icart-pg-progress-bar-widget icart-section-element icart-pg-section-element icartSectionElement icartProgressBarWidget icartSectionElement icartChildAffectRules activeWidget" data-widget-id="1" data-element-id="23506" data-class-name="Progress_bar" data-id="icart-widget-settings-23506" data-page-type="0"> <div class="icart-widget-inner-loader icartWidgetInnerLoader" id="icartWidgetInnerLoader23506" style="display:none;"><svg viewBox="0 0 44 44" class="Polaris-Spinner Polaris-Spinner--colorTeal Polaris-Spinner--sizeLarge" role="status"><path d="M15.542 1.487A21.507 21.507 0 0 0 .5 22c0 11.874 9.626 21.5 21.5 21.5 9.847 0 18.364-6.675 20.809-16.072a1.5 1.5 0 0 0-2.904-.756C37.803 34.755 30.473 40.5 22 40.5 11.783 40.5 3.5 32.217 3.5 22c0-8.137 5.3-15.247 12.942-17.65a1.5 1.5 0 1 0-.9-2.863z"></path></svg></div> <div class="icart-widget-hide icartWidgetInnerHtml" data-key="widget_background_color_23506"> <div class="icart-content-title" data-key="heading_background_color_23506" style="background: #EBEBEB;display:none;"> <span data-key="heading_text_23506"><h4 style="text-align: center;"><strong><span style="font-size: 16px;">Progress bar</span></strong></h4></span> </div> <div class="icart-pg-progress-container" data-key="widget_background_color_23506" style="background-color:rgb(255, 255, 255);"> <div class="icart-pg-widget-content-pd"> <div class="icart-range-slider-block-trird icartProgBarLayour2" style="display:block;"> <div class="icart-range-slider-trird"> <div class="icart-range-slider-box-trird"> <div class="icart-special-offer-message"> <span data-key="progress_bar_title_235060" class="progress_bar_title_23506"><p style="text-align: center;">Add Rs. XX.XX to unlock secret offer</p></span> </div> <div class="icart-flex icart-range-slider-flex-trird"> <div class="icart-range-active-trird icart-range-border-active-trird progress-bar-widget-fill widgetsliderFillStyle" style="width: 0%; background-color:rgb(242, 214, 215);" data-key="progress_filled_color_23506"></div> <span class="icart-range-slider-inner-trird" data-key="progress_empty_color_23506" style="background-color:#CCCCCC;" data-span-key="progress_bar_span_latoyt_three_add_23506"></span> </div> <div class="icart-flex icart-range-label-trird widgetsliderFontStyle" data-title-layout3-key="progress_bar_title_add_23506"> <span class="icart-range-title-trird icart-trird-range icartProgressBarTiersValue" data-text-key="discount_offer_text_color_23506" style="color:#333232;">0</span> <span class="icart-range-title-trird icart-trird-range icartProgressBarTiersValue" data-offer=100 data-text-key="discount_offer_text_color_23506" data-key="progress_bar_display_text_235060" style="color:#333232; left:100%;"><div class="icart-slider-3">Free Shipping</div></span> </div> </div> </div> </div> </div> </div> <style> #icart-widget-settings-23506 .icartProgBarLayour1 .icart-range-active::after { background-color:rgb(242, 214, 215); border:2px solid #CCCCCC; } </style> </div> </div> <!--Progress bar html end--> </div> <div class="icart-pg-checkout-fixed-bottom icartFullCartCheckoutStickyBottom"></div> <span class="icartButtonStyleAdd"> <style>.icart-pg .icart-button-radius{border-radius:0px !important;}</style> </span></form></div>
+</div>
+<link rel="stylesheet" id="icartFullCartMinCss" type="text/css" href="https://icart.identixweb.com/icart/assets/css/icart-fronted-cart.min.css" media="all">
+<script>
+function icartScriptLoad(e){return new Promise(function(t,n){let r=document.createElement("script");r.src=e,r.id="icartFullCartMinJs",r.type="text/javascript",r.onError=n,r.async="false",r.onload=t,r.addEventListener("error",n),r.addEventListener("load",t),document.getElementsByTagName("head")[0].appendChild(r)})}
+icartScriptLoad("https://icart.identixweb.com/icart/assets/js/icart-full-cart.min.js")
+.then(() => { document.getElementsByClassName("icartFullcartContain")[0].style.display="block"; })
+.catch(() => { document.getElementsByClassName("icartShopifyContain")[0].outerHTML = document.getElementsByClassName("icartShopifyContain")[0].outerHTML.replace(/icart-div/g,"div");document.getElementsByClassName("icartShopifyContain")[0].style.display="block"; });
+</script>
+{% endif %}
