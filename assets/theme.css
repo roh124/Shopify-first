@@ -2800,7 +2800,7 @@ hr {
   max-width: 25rem; }
 
 .product-form__variants {
-  display: block; }
+  display: block !Important; }
   .no-js .product-form__variants {
     display: block; }
 
