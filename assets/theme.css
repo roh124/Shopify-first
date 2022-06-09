@@ -2799,10 +2799,6 @@ hr {
 .product-form--payment-button-no-variants {
   max-width: 25rem; }
 
-.product-form__variants {
-  display: none; }
-  .no-js .product-form__variants {
-    display: block; }
 
 .product-form__input {
   display: block;
